@@ -1,0 +1,168 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F5C9018-57F5-4A86-9E13-68E6D272C723}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsApplication3</RootNamespace>
+    <AssemblyName>WindowsApplication3</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\_patterns\dbApplication\itextsharp-all-5.5.10\itextsharp-dll-core\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmployeeClass.cs" />
+    <Compile Include="ChildEmployee.cs" />
+    <Compile Include="TabRow2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRow2.Designer.cs">
+      <DependentUpon>TabRow2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRow.Designer.cs">
+      <DependentUpon>TabRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabTable2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabTable2.Designer.cs">
+      <DependentUpon>TabTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabPagesSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectForm.Designer.cs">
+      <DependentUpon>ConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TabRow2.resx">
+      <DependentUpon>TabRow2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabRow.resx">
+      <DependentUpon>TabRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabRow1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TabRow1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabTable2.resx">
+      <DependentUpon>TabTable2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabPagesSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TabPagesSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabTable.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TabTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabTable1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TabTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TabTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabTable.Designer.cs">
+      <DependentUpon>TabTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabTable1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabTable1.Designer.cs">
+      <DependentUpon>TabTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRow1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRow1.Designer.cs">
+      <DependentUpon>TabRow1.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
