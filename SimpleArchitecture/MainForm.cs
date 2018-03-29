@@ -21,7 +21,7 @@ using TabPagesSet;
 using BusinessLogic;
 using UserControls;
 
-namespace WindowsApplication
+namespace GraphicalUserInterface
 {
     public partial class MainForm : Form
     {
@@ -58,9 +58,8 @@ namespace WindowsApplication
 
 
         // ---------------------------------------------------------------------------
-        // 
 
-        // Catalog/Employees (пункт меню) 
+        // Catalog/Employees (main menu item) 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {// view Employees
 
@@ -78,7 +77,7 @@ namespace WindowsApplication
                 page.Controls.SetChildIndex(content, 0); // по совету из http://forum.vingrad.ru/forum/topic-215354.html
                 content.ds = ds;
                 content.tabControl = tabControl1;
-                // создаем делегата
+                // create delegate
                 content.SelectedEvent += new EventHandler<TableEventArgs>(GetEmployee);
                 content.ChangeViewEvent += new EventHandler<TableEventArgs>(ChangeTable);
 
@@ -92,7 +91,7 @@ namespace WindowsApplication
 
         }
 
-        // обработчик события SelectedEvent
+        // handler of SelectedEvent event 
         private void GetEmployee(object sender, TableEventArgs e)
         { 
             MessageBox.Show("Begin Edit emp = " + e.inc.ToString());
@@ -102,15 +101,15 @@ namespace WindowsApplication
             if (inc != -1)
             {
                 DataRow row = ds.Tables[0].Rows[inc];
-                // бизнес-объект
+                // business object
                 employee = new OrdinaryEmployee(inc, row[1].ToString(), System.Convert.ToDecimal(row[2]));
-                // представление
+                // View
                 page = new TabPage("Edit"); ;
             }
             else
             {// marker new row is inc == -1
                 employee = new OrdinaryEmployee(inc, "no name", 0);
-                // представление
+                // View
                 page = new TabPage("New"); ;
 
             }
@@ -122,13 +121,13 @@ namespace WindowsApplication
             content.Dock = DockStyle.Fill;
             content.EndEditEvent += new EventHandler<RowEventArgs>(UpdateEmployeeTable);
             page.Controls.Add(content);
-            page.Controls.SetChildIndex(content, 0); // по совету из http://forum.vingrad.ru/forum/topic-215354.html
+            page.Controls.SetChildIndex(content, 0); // from http://forum.vingrad.ru/forum/topic-215354.html
             tabControl1.TabPages.Add(page);
             tabControl1.SelectedIndex = tabControl1.TabPages.Count - 1;
 
         }
         
-        // обработчик события EndEditEvent
+        // Handler EndEditEvent event
         private void UpdateEmployeeTable(object sender, RowEventArgs e)
         { 
             MessageBox.Show("End Edit emp = " + employee.Name);
@@ -141,7 +140,6 @@ namespace WindowsApplication
             else
             {
                 DataTable dt = ds.Tables[0];
-                // добавим новую строку
                 DataRow newRow = dt.NewRow();
                 newRow["Name"] = employee.Name;
                 newRow["Salary"] = employee.Salary; ;
@@ -159,7 +157,7 @@ namespace WindowsApplication
 
         }
         
-        // обработчик события ChangeView
+        // Handler ChangeView event
         private void ChangeTable(object sender, TableEventArgs e)
         { 
             try
@@ -172,8 +170,8 @@ namespace WindowsApplication
                 MessageBox.Show(err.Message);
             }
         }
-        
-        // Catalog/Departments (main menu)
+
+        // Catalog/Departments (main menu item)
         private void departmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -190,7 +188,7 @@ namespace WindowsApplication
                 page.Controls.SetChildIndex(content, 0); // по совету из http://forum.vingrad.ru/forum/topic-215354.html
                 content.ds = ds;
                 content.tabControl = tabControl1;
-                // создаем делегата
+                // create delegate
                 //content.SelectedEventForCalculate += new EventHandler<RowEventArgs>(GetDepartment);
 
                 tabControl1.TabPages.Add(page);
@@ -223,7 +221,7 @@ namespace WindowsApplication
                 TabContentForOperation content = new TabContentForOperation();
                 content.Dock = DockStyle.Fill;
                 page.Controls.Add(content);
-                page.Controls.SetChildIndex(content, 0); // по совету из http://forum.vingrad.ru/forum/topic-215354.html
+                page.Controls.SetChildIndex(content, 0); // from http://forum.vingrad.ru/forum/topic-215354.html
                 content.ds = ds;
                 content.tabControl = tabControl1;
                 // создаем делегата
@@ -239,7 +237,7 @@ namespace WindowsApplication
 
         }
 
-        // обработчик события SelectedEventForCalculate
+        // Handler SelectedEventForCalculate event
         private void GetCalculateEmployee(object sender, RowEventArgs e)
         {
             MessageBox.Show("Begin Calculate emp = " + e.inc.ToString());
@@ -247,9 +245,9 @@ namespace WindowsApplication
             TabPage page;
             int inc = e.inc;
             DataRow row = ds.Tables[0].Rows[inc];
-            // бизнес-объект
+            // business object
             employee = new OrdinaryEmployee(inc, row[1].ToString(), System.Convert.ToDecimal(row[2]));
-            // представление
+            // view
             page = new TabPage("Calculate"); ;
 
             content.textBox1.Text = employee.Name;
@@ -257,20 +255,19 @@ namespace WindowsApplication
             content.employee = employee;
             content.tabControl = tabControl1;
             content.Dock = DockStyle.Fill;
-            // not end of action
             //content.EndEditEvent += new EventHandler<RowEventArgs>(UpdateEmployeeTable);
             page.Controls.Add(content);
-            page.Controls.SetChildIndex(content, 0); // по совету из http://forum.vingrad.ru/forum/topic-215354.html
+            page.Controls.SetChildIndex(content, 0); // from http://forum.vingrad.ru/forum/topic-215354.html
             tabControl1.TabPages.Add(page);
             tabControl1.SelectedIndex = tabControl1.TabPages.Count - 1;
         }
 
         // --------------------------------------------------------
-        // Report to pdf (пункт меню)
+        // Report to pdf (main menu item)
         // https://metanit.com/sharp/articles/25.php
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Определяем объект DataSet
+            //Define DataSet
             DatabaseConnection objConnect;
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=appdb;Integrated Security=True";
             DataSet ds; //DataRow dRow; 
@@ -281,11 +278,6 @@ namespace WindowsApplication
                 objConnect.connection_string = connectionString;
                 objConnect.Sql = "SELECT * FROM Employees";
                 ds = objConnect.GetConnection;
-                // The data mapping to grid
-                //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                //dataGridView1.AllowUserToAddRows = false;
-                //dataGridView1.DataSource = ds.Tables[0];
-                //dataGridView1.Columns["Id"].ReadOnly = true;
             }
             catch (Exception err)
             {
@@ -295,47 +287,49 @@ namespace WindowsApplication
             // ---------------------------------------------------------
             if (ds != null)
             {
-                //Объект документа пдф
+                //pdf-document object
                 iTextSharp.text.Document doc = new iTextSharp.text.Document();
 
-                //Создаем объект записи пдф-документа в файл
-                string reportDir = @"G:\_patterns\dbApplication\pdfTables.pdf";
+                //better:
+                string filename = @"C:\pdfTables.pdf";//Application.StartupPath;
+                //filename = Path.GetFullPath(
+                //    Path.Combine(filename, ".\\pdfTables.pdf"));
+
+                //wbrPdf
+
+                string reportDir = @"C:\pdfTables.pdf";
                 PdfWriter.GetInstance(doc, new FileStream(reportDir, FileMode.Create));
 
-                //Открываем документ
                 doc.Open();
 
-                //Определение шрифта необходимо для сохранения кириллического текста
-                //Иначе мы не увидим кириллический текст
-                //Если мы работаем только с англоязычными текстами, то шрифт можно не указывать
-                BaseFont baseFont = BaseFont.CreateFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                //The definition of the font is necessary to save the Cyrillic text
+                BaseFont baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
 
-                //Обход по всем таблицам датасета (хотя в данном случае мы можем опустить
-                //Так как в нашей бд только одна таблица)
+                //Traversal of all the tables in the dataset 
                 for (int i = 0; i < ds.Tables.Count; i++)
                 {
-                    //Создаем объект таблицы и передаем в нее число столбцов таблицы из нашего датасета
+                    //Create a table object and pass in it the number of columns of the table from our dataset
                     PdfPTable table = new PdfPTable(ds.Tables[i].Columns.Count);
-                    //Добавим в таблицу общий заголовок
+                    //Add a common header to the table
                     PdfPCell cell = new PdfPCell(new Phrase("БД " + ", таблица №" + (i + 1), font));
 
                     cell.Colspan = ds.Tables[i].Columns.Count;
                     cell.HorizontalAlignment = 1;
-                    //Убираем границу первой ячейки, чтобы были как заголовок
+                    //We remove the boundary of the first cell, so that we have both a header
                     cell.Border = 0;
                     table.AddCell(cell);
 
-                    //Сначала добавляем заголовки таблицы
+                    //First we add table headers
                     for (int j = 0; j < ds.Tables[i].Columns.Count; j++)
                     {
                         cell = new PdfPCell(new Phrase(new Phrase(ds.Tables[i].Columns[j].ColumnName, font)));
-                        //Фоновый цвет (необязательно, просто сделаем по красивее)
+                        //Background color (optional, just do it nicer)
                         cell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
                         table.AddCell(cell);
                     }
 
-                    //Добавляем все остальные ячейки
+                    //Add all other cells
                     for (int j = 0; j < ds.Tables[i].Rows.Count; j++)
                     {
                         for (int k = 0; k < ds.Tables[i].Columns.Count; k++)
@@ -343,24 +337,15 @@ namespace WindowsApplication
                             table.AddCell(new Phrase(ds.Tables[i].Rows[j][k].ToString(), font));
                         }
                     }
-                    //Добавляем таблицу в документ
+                    //Adding a table to the document
                     doc.Add(table);
                 }
-                //Закрываем документ
                 doc.Close();
 
-                MessageBox.Show("Pdf-документ сохранен, см. " + reportDir);
+                MessageBox.Show("The PDF document is saved, " + reportDir);
 
 
                 // --------------------------------------------------------- 
-                //tabControl1.SelectedIndex = 2;
-                string filename = @"G:\_patterns\dbApplication\pdfTables.pdf";//Application.StartupPath;
-
-                //filename = Path.GetFullPath(
-
-                //    Path.Combine(filename, ".\\Test.pdf"));
-
-                //wbrPdf
                 TabPageOfReport page = new TabPageOfReport();
                 page.Text = "Report"; page.wb.Navigate(filename);
                 tabControl1.TabPages.Add(page);
@@ -371,12 +356,11 @@ namespace WindowsApplication
 
         }
 
-        // Setting (пункт меню) 
+        // Setting (main menu item) 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        { // взаимодействие форм
+        { // interaction of forms
 
             ConnectForm newForm = new ConnectForm(this);
-            // textBox1  в коллекции индекс 2
             //newForm.Controls[2].Text = connectionString;
             (newForm.Controls["textBox1"] as TextBox).Text = connectionString;
 
@@ -397,12 +381,12 @@ namespace WindowsApplication
 
         }
 
-// -------------------------------------------------------------- 
- 
-        #region Управление TabPage
+        // -------------------------------------------------------------- 
+
+        #region TabPage context menu
 
 
-         int bufferOfContextMenu;
+        int bufferOfContextMenu;
         private void tabControl1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -448,40 +432,8 @@ namespace WindowsApplication
 
         
  
-// -------- Presenter -------------------------------------------------
-        public Presenter presenter;
-        public MvpModel model;
-        public int inc2;
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-            // Load
-            try
-            {
-                objConnect = new DatabaseConnection();
-                objConnect.connection_string = connectionString;
-                objConnect.Sql = "SELECT * FROM Employee";
-                ds = objConnect.GetConnection;
-                inc2 = 3;
-                DataRow row = ds.Tables[0].Rows[inc2];
-                model = new MvpModel(inc2, row[1].ToString(), System.Convert.ToDecimal(row[2]));
-                MessageBox.Show(model.Name);
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            TabPageOfView page = new TabPageOfView();
-            page.Text = "Presenter";
-            presenter = new Presenter(page, model);
-            tabControl1.TabPages.Add(page);
-            tabControl1.SelectedIndex = tabControl1.TabPages.Count - 1;
-
-        }
-
-
-        // ------------------------------------------------------
+// ------------------------------------------------------
 
 
     

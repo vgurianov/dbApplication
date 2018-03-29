@@ -43,25 +43,25 @@
   <ItemGroup>
     <Compile Include="EmployeeClass.cs" />
     <Compile Include="ChildEmployee.cs" />
-    <Compile Include="TabRow2.cs">
+    <Compile Include="Components\TabRow2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabRow2.Designer.cs">
+    <Compile Include="Components\TabRow2.Designer.cs">
       <DependentUpon>TabRow2.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabRow.cs">
+    <Compile Include="Components\TabRow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabRow.Designer.cs">
+    <Compile Include="Components\TabRow.Designer.cs">
       <DependentUpon>TabRow.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabTable2.cs">
+    <Compile Include="Components\TabTable2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabTable2.Designer.cs">
+    <Compile Include="Components\TabTable2.Designer.cs">
       <DependentUpon>TabTable2.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabPagesSet.cs">
+    <Compile Include="Components\TabPagesSet.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
@@ -79,19 +79,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TabRow2.resx">
+    <EmbeddedResource Include="Components\TabRow2.resx">
       <DependentUpon>TabRow2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabRow.resx">
+    <EmbeddedResource Include="Components\TabRow.resx">
       <DependentUpon>TabRow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabRow1.resx">
+    <EmbeddedResource Include="Components\TabRow1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabRow1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabTable2.resx">
+    <EmbeddedResource Include="Components\TabTable2.resx">
       <DependentUpon>TabTable2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -108,15 +108,15 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabPagesSet.resx">
+    <EmbeddedResource Include="Components\TabPagesSet.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabPagesSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabTable.resx">
+    <EmbeddedResource Include="Components\TabTable.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabTable1.resx">
+    <EmbeddedResource Include="Components\TabTable1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TabTable1.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,22 +135,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TabTable.cs">
+    <Compile Include="Components\TabTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabTable.Designer.cs">
+    <Compile Include="Components\TabTable.Designer.cs">
       <DependentUpon>TabTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabTable1.cs">
+    <Compile Include="Components\TabTable1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabTable1.Designer.cs">
+    <Compile Include="Components\TabTable1.Designer.cs">
       <DependentUpon>TabTable1.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabRow1.cs">
+    <Compile Include="Components\TabRow1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabRow1.Designer.cs">
+    <Compile Include="Components\TabRow1.Designer.cs">
       <DependentUpon>TabRow1.cs</DependentUpon>
     </Compile>
   </ItemGroup>

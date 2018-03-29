@@ -1,4 +1,4 @@
-﻿namespace WindowsApplication
+﻿namespace GraphicalUserInterface
 {
     partial class MainForm
     {

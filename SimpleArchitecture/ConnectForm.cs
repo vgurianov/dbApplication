@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 using System.Configuration;
 
-namespace WindowsApplication
+namespace GraphicalUserInterface
 {
     public partial class ConnectForm : Form
     {
@@ -48,45 +48,43 @@ namespace WindowsApplication
 
             try
             {
-                // Открываем подключение
                 connection.Open();
-                //Console.WriteLine("Подключение открыто");
-                textBox2.AppendText("Подключение открыто" + Environment.NewLine);
-             // Вывод информации о подключении
-                //Console.WriteLine("Свойства подключения:");
-                textBox2.AppendText("Свойства подключения:" + Environment.NewLine);
-                //Console.WriteLine("\tСтрока подключения: {0}", connection.ConnectionString);
-                textBox2.AppendText("\tСтрока подключения: " + connection.ConnectionString + Environment.NewLine);
-                //Console.WriteLine("\tБаза данных: {0}", connection.Database);
-                textBox2.AppendText("\tБаза данных: " + connection.Database + Environment.NewLine);
-                //Console.WriteLine("\tСервер: {0}", connection.DataSource);
-                textBox2.AppendText("\tСервер: " + connection.DataSource + Environment.NewLine);
-                //Console.WriteLine("\tВерсия сервера: {0}", connection.ServerVersion);
-                textBox2.AppendText("\tВерсия сервера: " + connection.ServerVersion + Environment.NewLine);
-                //Console.WriteLine("\tСостояние: {0}", connection.State);
-                textBox2.AppendText("\tСостояние: " + connection.State + Environment.NewLine);
-                //Console.WriteLine("\tWorkstationld: {0}", connection.WorkstationId);
-                textBox2.AppendText("\tWorkstationld: " + connection.WorkstationId + Environment.NewLine);
+                //Console.WriteLine("Connection open");
+                textBox2.AppendText("Connection open" + Environment.NewLine);
+             // Output information
+                //Console.WriteLine("Connection properties:");
+                textBox2.AppendText("Connection properties:" + Environment.NewLine);
+                //Console.WriteLine("\tConnection string: {0}", connection.ConnectionString);
+                textBox2.AppendText("\tConnection string: " + connection.ConnectionString + Environment.NewLine);
+                //Console.WriteLine("\tDatabase: {0}", connection.Database);
+                textBox2.AppendText("\tDatabase: " + connection.Database + Environment.NewLine);
+                //Console.WriteLine("\tServer: {0}", connection.DataSource);
+                textBox2.AppendText("\tServer: " + connection.DataSource + Environment.NewLine);
+                //Console.WriteLine("\tServer ver.: {0}", connection.ServerVersion);
+                textBox2.AppendText("\tServer ver.: " + connection.ServerVersion + Environment.NewLine);
+                //Console.WriteLine("\tState: {0}", connection.State);
+                textBox2.AppendText("\tState: " + connection.State + Environment.NewLine);
+                //Console.WriteLine("\tWorkstationID: {0}", connection.WorkstationId);
+                textBox2.AppendText("\tWorkstationID: " + connection.WorkstationId + Environment.NewLine);
 
             }
             catch (SqlException ex)
             {
                 // Unhandled Exception: System.ArgumentException: Keyword not supported...
-                // неправильного указания параметров строки подключения
-                // Cannot open database "название базы данных" requested by the login. The login failed.Login failed for user 'название_пользователя'
-                // убедиться, что на сервере есть база данных с таким названием, а если есть, то проверить, есть ли доступ для данного пользователя к этой бд
+                // ... see cString
+                // Cannot open database " ... " requested by the login. The login failed.Login failed for user 'название_пользователя'
+                // ... see Database
                 // A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible..
-                // SQL Server не запущен. И его надо запустить или перезапустить, через панель служб.
+                // ... SQL Server do not run
                 Console.WriteLine(ex.Message);
                 textBox2.AppendText("Error: " + ex.Message + Environment.NewLine);
             }
             finally
             {
-                // закрываем подключение
                 connection.Close();
-                textBox2.AppendText("Подключение закрыто... " + Environment.NewLine);
-                textBox2.AppendText("Проверка подключения выполнена успешно " + Environment.NewLine);
-                //Console.WriteLine("Подключение закрыто...");
+                textBox2.AppendText("Connection close... " + Environment.NewLine);
+                textBox2.AppendText("Connection validation successful " + Environment.NewLine);
+                //Console.WriteLine("Connection close...");
             }
 
             //Console.Read();
