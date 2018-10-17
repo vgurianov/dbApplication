@@ -1,2 +1,3 @@
 # dbApplication
-Database application. C#, Microsoft SQL.Typical solutions.
+Database application. C#, Microsoft SQL.  
+Typical solutions to may students.
